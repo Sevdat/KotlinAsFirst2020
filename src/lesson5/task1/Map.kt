@@ -96,8 +96,17 @@ fun buildWordSet(text: List<String>): MutableSet<String> {
  *   buildGrades(mapOf("Марат" to 3, "Семён" to 5, "Михаил" to 5))
  *     -> mapOf(5 to listOf("Семён", "Михаил"), 3 to listOf("Марат"))
  */
-fun buildGrades(grades: Map<String, Int>): Map<Int, List<String>> = TODO()
+fun buildGrades(grades: Map<String, Int>): Map<Int, List<String>> {
+    var studentsGrade = mutableMapOf<Int, List<String>>()
+    for ((surname, grade) in grades) {
+        if (grade in studentsGrade) {
+            val tempList: List<String> = studentsGrade[grade] ?: listOf()
+            studentsGrade[grade] = tempList + listOf(surname)
 
+        } else studentsGrade[grade] = listOf(surname)
+    }
+    return studentsGrade
+}
 /**
  * Простая (2 балла)
  *
