@@ -91,7 +91,6 @@ class Tests {
     @Test
     @Tag("2")
     fun minDivisor() {
-        //test
         assertEquals(2, minDivisor(2))
         assertEquals(3, minDivisor(75))
         assertEquals(5, minDivisor(75 / 3))
