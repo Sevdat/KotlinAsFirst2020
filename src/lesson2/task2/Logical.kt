@@ -3,6 +3,7 @@
 package lesson2.task2
 
 import lesson1.task1.sqr
+import kotlin.math.abs
 
 /**
  * Пример
@@ -18,7 +19,13 @@ fun pointInsideCircle(x: Double, y: Double, x0: Double, y0: Double, r: Double) =
  * Четырехзначное число назовем счастливым, если сумма первых двух ее цифр равна сумме двух последних.
  * Определить, счастливое ли заданное число, вернуть true, если это так.
  */
-fun isNumberHappy(number: Int): Boolean = TODO()
+fun isNumberHappy(number: Int): Boolean {
+    val firstNumber = number / 1000
+    val lastNumber = number % 10
+    val secondNumber = number / 100 % 10
+    val thirdNumber = number / 10 % 10
+    return firstNumber + secondNumber == thirdNumber + lastNumber
+}
 
 /**
  * Простая (2 балла)
@@ -27,7 +34,7 @@ fun isNumberHappy(number: Int): Boolean = TODO()
  * Определить, угрожают ли они друг другу. Вернуть true, если угрожают.
  * Считать, что ферзи не могут загораживать друг друга.
  */
-fun queenThreatens(x1: Int, y1: Int, x2: Int, y2: Int): Boolean = TODO()
+fun queenThreatens(x1: Int, y1: Int, x2: Int, y2: Int): Boolean = (abs(x1 - y1) == abs(x2 - y2)) || (x1 == x2 || y1 == y2)
 
 
 /**
@@ -36,7 +43,23 @@ fun queenThreatens(x1: Int, y1: Int, x2: Int, y2: Int): Boolean = TODO()
  * Дан номер месяца (от 1 до 12 включительно) и год (положительный).
  * Вернуть число дней в этом месяце этого года по григорианскому календарю.
  */
-fun daysInMonth(month: Int, year: Int): Int = TODO()
+fun daysInMonth(month: Int, year: Int): Int {
+//    leap year
+    if (month == 2) {
+        if (year % 4 == 0) {
+            if (year % 100 == 0 && year % 400 == 0) 29 else 28
+        }
+    }
+    while (month in 1..6) {
+        if (month % 2 == 0) return 31
+        else 30
+    }
+    while (month in 7..12) {
+        if (month % 2 == 0) return 30
+        else 31
+    }
+    return 0
+}
 
 /**
  * Простая (2 балла)

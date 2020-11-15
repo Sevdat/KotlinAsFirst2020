@@ -3,6 +3,7 @@
 package lesson2.task1
 
 import lesson1.task1.discriminant
+import kotlin.math.abs
 import kotlin.math.max
 import kotlin.math.sqrt
 
@@ -68,7 +69,37 @@ fun minBiRoot(a: Double, b: Double, c: Double): Double {
  * Мой возраст. Для заданного 0 < n < 200, рассматриваемого как возраст человека,
  * вернуть строку вида: «21 год», «32 года», «12 лет».
  */
-fun ageDescription(age: Int): String = TODO()
+fun ageDescription(age: Int): String {
+    if (age in 1..20) {
+        when {
+            (age in 2..4) -> return ("$age года")
+            (age in 5..20) -> return ("$age лет")
+            (age == 1) -> return ("$age год")
+        }
+    }
+    if (age in 21..99) {
+        when {
+            (age % 10 in 2..4) -> return ("$age года")
+            (age % 10 in 5..9) -> return ("$age лет")
+            (age % 10 == 1) -> return ("$age год")
+        }
+    }
+    if (age in 100..120) {
+        when {
+            (age % 100 in 2..4) -> return ("$age года")
+            (age % 100 in 5..20) -> return ("$age лет")
+            (age % 10 == 1) -> return ("$age год")
+        }
+    }
+    if (age in 121..200) {
+        when {
+            (age % 10 in 2..4) -> return ("$age года")
+            (age % 10 in 5..9) -> return ("$age лет")
+            (age == 1) -> return ("$age год")
+        }
+    }
+    return ("")
+}
 
 /**
  * Простая (2 балла)
@@ -81,7 +112,15 @@ fun timeForHalfWay(
     t1: Double, v1: Double,
     t2: Double, v2: Double,
     t3: Double, v3: Double
-): Double = TODO()
+): Double {
+    val forHalfDist = (v1 * t1 + v2 * t2 + v3 * t3) / 2
+    when {
+        (forHalfDist <= v1 * t1) -> (forHalfDist / v1)
+        (forHalfDist <= (v1 * t1 + v2 * t2)) -> (forHalfDist - v1 * t1) / (v2 + t1)
+        else -> (forHalfDist - (v1 * t1 + v2 * t2)) / (v3 + t1 + t2)
+    }
+    return 0.0
+}
 
 /**
  * Простая (2 балла)
@@ -96,7 +135,12 @@ fun whichRookThreatens(
     kingX: Int, kingY: Int,
     rookX1: Int, rookY1: Int,
     rookX2: Int, rookY2: Int
-): Int = TODO()
+): Int = when {
+    (kingX == rookX1 || kingY == rookY1) && (kingX == rookX2 || kingY == rookY2) -> 3
+    (kingX == rookX1 || kingY == rookY1) -> 1
+    (kingX == rookX2 || kingY == rookY2) -> 2
+    else -> 0
+}
 
 /**
  * Простая (2 балла)
@@ -112,7 +156,12 @@ fun rookOrBishopThreatens(
     kingX: Int, kingY: Int,
     rookX: Int, rookY: Int,
     bishopX: Int, bishopY: Int
-): Int = TODO()
+): Int =  when {
+    (abs(kingX - kingY) == abs(bishopX - bishopY)) && (kingX == rookX || kingY == rookY) -> 3
+    (kingX == rookX || kingY == rookY) -> 1
+    abs(kingX - kingY) == abs(bishopX - bishopY) -> 2
+    else -> 0
+}
 
 /**
  * Простая (2 балла)
