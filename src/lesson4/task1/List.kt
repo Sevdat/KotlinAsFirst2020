@@ -122,16 +122,13 @@ fun buildSumExample(list: List<Int>) = list.joinToString(separator = " + ", post
  * Модуль пустого вектора считать равным 0.0.
  */
 fun abs(v: List<Double>): Double {
-   var i = v
+    var i = v
     var x = 0.0
     if (v.isEmpty()) return 0.0
-    for (i in v){
-        x = x + i.pow(2.0)
+    for (i in v) {
+        x += i.pow(2.0)
     }
     return sqrt(x)
-    //return i.pow(2) doesnt work
-    // * is shown as red
-    //doesnt work
 }
 
 /**
@@ -141,11 +138,10 @@ fun abs(v: List<Double>): Double {
  */
 fun mean(list: List<Double>): Double {
     var i = list
-    for (i in list.indices){
-        return (list[i]/list.size).toString().toDouble()
-        //delete return and repeat collecting wihtout string
+    for (i in list.indices) {
+        return (list[i] / list.size)
     }
-    return i.toString().toDouble()
+    return 0.0
 }
 
 /**
