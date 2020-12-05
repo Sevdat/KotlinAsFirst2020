@@ -75,11 +75,13 @@ fun digitCountInNumber(n: Int, m: Int): Int =
 fun digitNumber(n: Int): Int {
     var x = n
     var a = 0
-    when { (n == 0) -> return 1}
+    when {
+        (n == 0) -> return 1
+    }
     //why does it work with (if) and not (when)?  when { (n == 0) -> return y}
     while (x != 0) {
-        a = a + 1
-        x = x / 10
+        a += 1
+        x /= 10
     }
     return a
 }
@@ -91,13 +93,13 @@ fun digitNumber(n: Int): Int {
  * Ряд Фибоначчи определён следующим образом: fib(1) = 1, fib(2) = 1, fib(n+2) = fib(n) + fib(n+1)
  */
 fun fib(n: Int): Int {
-    if ((n==1) || (n==2)) return 1
+    if ((n == 1) || (n == 2)) return 1
     var x = 3
     var num2 = 1
     var num3 = 2
     while (x != n) {
         val num1 = num3
-        num3 = num2 + num3
+        num3 += num2
         num2 = num1
         x++
 
@@ -114,10 +116,10 @@ fun fib(n: Int): Int {
  */
 fun minDivisor(n: Int): Int {
     var k = 2
-    while ((n % k != 0) && (k <= sqrt(n.toDouble()) ) ) {
+    while ((n % k != 0) && (k <= sqrt(n.toDouble()))) {
         k++
     }
-    if (n % k == 0) return k else return n
+    return if (n % k == 0) k else n
 }
 
 /**
@@ -146,8 +148,8 @@ fun maxDivisor(n: Int): Int = n / minDivisor(n)
 fun collatzSteps(x: Int): Int {
     var y = x
     var k = 0
-    while (y != 1){
-        if (y % 2 == 0)  y = y/2 else y = 3*y + 1
+    while (y != 1) {
+        if (y % 2 == 0) y /= 2 else y = 3 * y + 1
         k++
     }
     return k++
