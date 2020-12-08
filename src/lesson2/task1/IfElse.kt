@@ -101,9 +101,9 @@ fun timeForHalfWay(
 ): Double {
     val forHalfDist = (v1 * t1 + v2 * t2 + v3 * t3) / 2
     return when {
-        (forHalfDist <= v1 * t1) -> (forHalfDist / v1)
-        (forHalfDist <= (v1 * t1 + v2 * t2)) -> (t1 + (forHalfDist - v1 * t1) / (v2))
-        else -> (t1 + t2 + ((forHalfDist) - t1 * v1 - t2 * v2) / v3)
+        forHalfDist <= v1 * t1 -> forHalfDist / v1
+        forHalfDist <= v1 * t1 + v2 * t2 -> t1 + (forHalfDist - v1 * t1) / v2
+        else -> t1 + t2 + (forHalfDist - t1 * v1 - t2 * v2) / v3
     }
 }
 
@@ -120,14 +120,13 @@ fun whichRookThreatens(
     kingX: Int, kingY: Int,
     rookX1: Int, rookY1: Int,
     rookX2: Int, rookY2: Int
-): Int {
-    return when {
-        ((kingX == rookX1 || kingY == rookY1) && (kingX == rookX2 || kingY == rookY2)) -> 3
-        (kingX == rookX2 || kingY == rookY2) -> 2
-        (kingX == rookX1 || kingY == rookY1) -> 1
-        else -> 0
-    }
+): Int = when {
+    kingX == rookX1 || kingY == rookY1 && kingX == rookX2 || kingY == rookY2 -> 3
+    kingX == rookX2 || kingY == rookY2 -> 2
+    kingX == rookX1 || kingY == rookY1 -> 1
+    else -> 0
 }
+
 
 /**
  * Простая (2 балла)
@@ -143,13 +142,11 @@ fun rookOrBishopThreatens(
     kingX: Int, kingY: Int,
     rookX: Int, rookY: Int,
     bishopX: Int, bishopY: Int
-): Int {
-    return when {
-        ((abs(kingX - bishopX) == abs(kingY - bishopY)) && (kingX == rookX || kingY == rookY)) -> 3
-        (kingX == rookX || kingY == rookY) -> 1
-        (abs(kingX - bishopX) == abs(kingY - bishopY)) -> 2
-        else -> 0
-    }
+): Int = when {
+    abs(kingX - bishopX) == abs(kingY - bishopY) && (kingX == rookX || kingY == rookY) -> 3
+    kingX == rookX || kingY == rookY -> 1
+    abs(kingX - bishopX) == abs(kingY - bishopY) -> 2
+    else -> 0
 }
 
 /**

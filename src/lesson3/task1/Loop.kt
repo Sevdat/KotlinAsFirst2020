@@ -2,6 +2,8 @@
 
 package lesson3.task1
 
+import jdk.nashorn.internal.objects.NativeArray.forEach
+import kotlinx.html.ARel.next
 import kotlin.math.sqrt
 
 // Урок 3: циклы
@@ -75,10 +77,7 @@ fun digitCountInNumber(n: Int, m: Int): Int =
 fun digitNumber(n: Int): Int {
     var x = n
     var a = 0
-    when {
-        (n == 0) -> return 1
-    }
-    //why does it work with (if) and not (when)?  when { (n == 0) -> return y}
+    if (n == 0) return 1
     while (x != 0) {
         a += 1
         x /= 10
@@ -93,7 +92,7 @@ fun digitNumber(n: Int): Int {
  * Ряд Фибоначчи определён следующим образом: fib(1) = 1, fib(2) = 1, fib(n+2) = fib(n) + fib(n+1)
  */
 fun fib(n: Int): Int {
-    if ((n == 1) || (n == 2)) return 1
+    if (n == 1 || n == 2) return 1
     var x = 3
     var num2 = 1
     var num3 = 2
@@ -188,7 +187,17 @@ fun squareBetweenExists(m: Int, n: Int): Boolean = TODO()
  *
  * Использовать операции со строками в этой задаче запрещается.
  */
-fun revert(n: Int): Int = TODO()
+fun revert(n: Int): Int {
+    var old = n
+    var new = 0
+
+    while (old > 0) {
+        new = new * 10 + old % 10
+        old /= 10
+
+    }
+    return new
+}
 
 /**
  * Средняя (3 балла)
@@ -199,7 +208,7 @@ fun revert(n: Int): Int = TODO()
  *
  * Использовать операции со строками в этой задаче запрещается.
  */
-fun isPalindrome(n: Int): Boolean = TODO()
+fun isPalindrome(n: Int): Boolean = revert(n) == n
 
 /**
  * Средняя (3 балла)

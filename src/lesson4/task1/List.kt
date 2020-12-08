@@ -4,6 +4,7 @@ package lesson4.task1
 
 import jdk.nashorn.internal.objects.NativeArray.forEach
 import lesson1.task1.discriminant
+import kotlin.math.E
 import kotlin.math.pow
 import kotlin.math.sqrt
 
@@ -170,7 +171,7 @@ fun center(list: MutableList<Double>): MutableList<Double> {
  */
 fun times(a: List<Int>, b: List<Int>): Int {
     var c = 0
-    for (i in (a.indices)) {
+    for (i in a.indices) {
         c += a[i] * b[i]
     }
     return c
