@@ -107,6 +107,7 @@ fun buildGrades(grades: Map<String, Int>): Map<Int, List<String>> {
     }
     return studentsGrade
 }
+
 /**
  * Простая (2 балла)
  *
@@ -117,7 +118,12 @@ fun buildGrades(grades: Map<String, Int>): Map<Int, List<String>> {
  *   containsIn(mapOf("a" to "z"), mapOf("a" to "z", "b" to "sweet")) -> true
  *   containsIn(mapOf("a" to "z"), mapOf("a" to "zee", "b" to "sweet")) -> false
  */
-fun containsIn(a: Map<String, String>, b: Map<String, String>): Boolean = TODO()
+fun containsIn(a: Map<String, String>, b: Map<String, String>): Boolean {
+    for ((i, n) in a) {
+        return a[i] == b[i] && a[n] == b[n]
+    }
+    return false
+}
 
 /**
  * Простая (2 балла)
@@ -134,7 +140,10 @@ fun containsIn(a: Map<String, String>, b: Map<String, String>): Boolean = TODO()
  *     -> a changes to mutableMapOf() aka becomes empty
  */
 fun subtractOf(a: MutableMap<String, String>, b: Map<String, String>) {
-    TODO()
+    for ((i, n) in b) {
+        if (a[i] == n) a.remove(i, n)
+    }
+    return
 }
 
 /**
