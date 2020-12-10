@@ -153,7 +153,7 @@ fun subtractOf(a: MutableMap<String, String>, b: Map<String, String>) {
  * В выходном списке не должно быть повторяюихся элементов,
  * т. е. whoAreInBoth(listOf("Марат", "Семён, "Марат"), listOf("Марат", "Марат")) == listOf("Марат")
  */
-fun whoAreInBoth(a: List<String>, b: List<String>): List<String> = a.intersect(b.toSet()).toList()
+fun whoAreInBoth(a: List<String>, b: List<String>): List<String> = a.intersect(b).toList()
 
 /**
  * Средняя (3 балла)
@@ -213,7 +213,7 @@ fun findCheapestStuff(stuff: Map<String, Pair<String, Double>>, kind: String): S
  *   canBuildFrom(listOf('a', 'b', 'o'), "baobab") -> true
  */
 fun canBuildFrom(chars: List<Char>, word: String): Boolean =
-    ((word.toLowerCase().toSet()).intersect(chars.toSet()) == (word.toLowerCase()
+    ((word.toLowerCase().toSet()).intersect(chars.toString().toLowerCase().toList().toSet()) == (word.toLowerCase()
         .toSet()))
 
 /**
@@ -296,14 +296,37 @@ fun propagateHandshakes(friends: Map<String, Set<String>>): Map<String, Set<Stri
  * Например:
  *   findSumOfTwo(listOf(1, 2, 3), 4) -> Pair(0, 2)
  *   findSumOfTwo(listOf(1, 2, 3), 6) -> Pair(-1, -1)
+ *   findSumOfTwo(listOf(1, 0, 0), 0) -> Pair(1, 2)
  */
+
 fun findSumOfTwo(list: List<Int>, number: Int): Pair<Int, Int> {
+    val map = mutableMapOf<Int, Int>()
     for (i in list.indices) {
         val search = number - list[i]
-        return if (search in list) Pair(i, (list.indexOf(search))) else Pair(-1, -1)
+        if (search !in map) map[list[i]] = i
+        else return Pair(list.indexOf(search), i)
     }
-return Pair(-1, -1)
+    return Pair(-1, -1)
 }
+
+//for (i in list.indices) {
+//    val search = number - list[i]
+//    return if (search in list) Pair(i, (list.indexOf(search))) else Pair(-1, -1)
+//}
+//return Pair(-1, -1)
+//}
+
+//    for (i in list.indices) {
+//        val a = list
+//        val b = list
+//        when (a[i] != b[i]) {
+//            (0 == number - a[i] - b[i]) -> Pair(a[i], b[i])
+//            else -> Pair(-1, -1)
+//        }
+//    }
+//    return Pair(-1, -1)
+//}
+
 
 /**
  * Очень сложная (8 баллов)
