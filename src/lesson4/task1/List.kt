@@ -2,9 +2,7 @@
 
 package lesson4.task1
 
-import jdk.nashorn.internal.objects.NativeArray.forEach
 import lesson1.task1.discriminant
-import kotlin.math.E
 import kotlin.math.pow
 import kotlin.math.sqrt
 

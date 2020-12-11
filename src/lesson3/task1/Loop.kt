@@ -2,8 +2,7 @@
 
 package lesson3.task1
 
-import jdk.nashorn.internal.objects.NativeArray.forEach
-import kotlinx.html.ARel.next
+
 import kotlin.math.sqrt
 
 // Урок 3: циклы
