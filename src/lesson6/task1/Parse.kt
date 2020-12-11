@@ -91,19 +91,18 @@ fun dateStrToDigit(str: String): String {
         "ноября",
         "декабря"
     )
-    if (str.split(" ").size == 3) {
+    return if (str.split(" ").size == 3) {
         val day = str.split(" ")[0].toInt()
         val month = str.split(" ")[1]
         val year = str.split(" ")[2].toInt()
-        return if
-                       (month !in months || str.split(" ").isEmpty() || (daysInMonth(
+        if
+                (month !in months || str.split(" ").isEmpty() || (daysInMonth(
                 months.indexOf(month) + 1,
                 year
             ) < day)
         ) ""
         else String.format("%02d.%02d.%d", day, months.indexOf(month) + 1, year)
-    }
-    return ""
+    } else ""
 }
 
 /**
