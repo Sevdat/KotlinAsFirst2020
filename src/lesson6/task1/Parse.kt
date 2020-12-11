@@ -3,6 +3,7 @@
 package lesson6.task1
 
 import lesson2.task2.daysInMonth
+import java.lang.NumberFormatException
 
 // Урок 6: разбор строк, исключения
 // Максимальное количество баллов = 13
@@ -78,31 +79,20 @@ fun main() {
  */
 fun dateStrToDigit(str: String): String {
     val months = listOf(
-        "января",
-        "февраля",
-        "марта",
-        "апреля",
-        "мая",
-        "июня",
-        "июля",
-        "августа",
-        "сентября",
-        "октября",
-        "ноября",
-        "декабря"
+        "января", "февраля", "марта", "апреля", "мая", "июня", "июля", "августа",
+        "сентября", "октября", "ноября", "декабря"
     )
-    return if (str.split(" ").size == 3) {
+    return try {
         val day = str.split(" ")[0].toInt()
         val month = str.split(" ")[1]
         val year = str.split(" ")[2].toInt()
-        if
-                (month !in months || str.split(" ").isEmpty() || (daysInMonth(
-                months.indexOf(month) + 1,
-                year
-            ) < day)
+        if (month !in months || str.split(" ").isEmpty() ||
+            (daysInMonth(months.indexOf(month) + 1, year) < day)
         ) ""
         else String.format("%02d.%02d.%d", day, months.indexOf(month) + 1, year)
-    } else ""
+    } catch (i: Exception) {
+        ""
+    }
 }
 
 /**
