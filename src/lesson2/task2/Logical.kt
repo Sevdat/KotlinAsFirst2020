@@ -49,16 +49,10 @@ fun daysInMonth(month: Int, year: Int): Int {
         return if (((year % 4 == 0) && (year % 100 != 0) || (year % 400 == 0))) 29
         else 28
     }
-    if (month in 1..6) {
-        return if ((year % 2 == 0) && (month % 2 != 0)) return 31
-        else 30
-    }
-    if (month in 7..12) {
-        if (month == 8) return 31
-        return if ((year % 2 == 0) && (month % 2 != 0)) return 31
-        else 30
-    }
-    return 0
+    return if ((month == 1) || (month == 3) || (month == 5) || (month == 7) ||
+        (month == 8) || (month == 10) || (month == 12)
+    ) 31
+    else 30
 }
 
 /**

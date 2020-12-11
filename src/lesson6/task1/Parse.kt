@@ -74,7 +74,31 @@ fun main() {
  * Обратите внимание: некорректная с точки зрения календаря дата (например, 30.02.2009) считается неверными
  * входными данными.
  */
-fun dateStrToDigit(str: String): String = TODO()
+fun dateStrToDigit(str: String): String {
+    val months =
+        listOf(
+            "январь",
+            "февраль",
+            "март",
+            "апрель",
+            "май",
+            "июнь",
+            "июль",
+            "август",
+            "сентябрь",
+            "октябрь",
+            "ноябрь",
+            "декабрь"
+        )
+    if (str.split("").size == 3) {
+        val day = str.split("")[0].toInt()
+        val month = str.split("")[1]
+        val year = str.split("")[2].toInt()
+        return if (month !in months) ("") else
+            String.format("%02d.%02d.%d", day, months.indexOf(month) + 1, year)
+    }
+    return ("")
+}
 
 /**
  * Средняя (4 балла)
