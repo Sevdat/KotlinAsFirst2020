@@ -4,6 +4,8 @@ package lesson2.task2
 
 import lesson1.task1.sqr
 import kotlin.math.abs
+import kotlin.math.max
+import kotlin.math.min
 
 /**
  * Пример
@@ -76,4 +78,13 @@ fun circleInside(
  * кирпич 4 х 4 х 4 пройдёт через отверстие 4 х 4.
  * Вернуть true, если кирпич пройдёт
  */
-fun brickPasses(a: Int, b: Int, c: Int, r: Int, s: Int): Boolean = TODO()
+fun brickPasses(a: Int, b: Int, c: Int, r: Int, s: Int): Boolean {
+
+    return when {
+        max(a, b) <= max(r, s) && min(a, b) <= min(r, s) -> true
+        max(a, c) <= max(r, s) && min(a, c) <= min(r, s) -> true
+        max(b, c) <= max(r, s) && min(b, c) <= min(r, s) -> true
+        else -> false
+
+    }
+}
