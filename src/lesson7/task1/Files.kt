@@ -2,6 +2,7 @@
 
 package lesson7.task1
 
+import lesson4.task1.convert
 import java.io.File
 
 // Урок 7: работа с файлами
@@ -124,9 +125,12 @@ fun countSubstrings(inputName: String, substrings: List<String>): Map<String, In
  * Исключения (жюри, брошюра, парашют) в рамках данного задания обрабатывать не нужно
  *
  */
-fun sibilants(inputName: String, outputName: String) {
-    TODO()
-}
+fun sibilants(inputName: String, outputName: String): Char = TODO()
+//    val rus = setOf('Ж', 'Ч', 'Ш', 'Щ')
+//    val covert = mapOf('ы' to 'и', 'Ы' to 'И', 'я' to 'а', 'Я' to 'А', 'ю' to 'у', 'Ю' to 'У')
+//    val f = File(outputName)
+//    }
+
 
 /**
  * Средняя (15 баллов)
